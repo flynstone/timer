@@ -6,19 +6,21 @@ const connect = function () {
     host: '165.227.47.243',
     port: 50541// PORT number here,
   });
-
   // interpret incoming data as text
   conn.setEncoding("utf8");
+
+  conn.on("data", data => {
+    console.log(data);
+    conn.write("Move: Up");
+  });
+
+  conn.on("connect", () => {
+    console.log("Conected to the server");
+    //conn.write("Name: empty");
+    conn.write("Move: up");
+  });
 
   return conn;
 };
 
-const conn = connect();
-
-conn.on("connect", () => {
-  console.log("Conected to server");
-  conn.write("Name: JL");
-  //conn.write("Move: up");
-});
-
-module.exports = connect;
+module.exports = { connect };
