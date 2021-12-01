@@ -18,6 +18,7 @@ const conn = connect();
 conn.on("connect", () => {
   console.log("Conected to server");
   conn.write("Name: JL");
+  //conn.write("Move: up");
 });
 
 module.exports = connect;
